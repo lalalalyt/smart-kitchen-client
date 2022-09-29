@@ -3,7 +3,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
 import { useContext, useState } from "react";
 
-import { ItemList } from "../ItemList/ItemList";
+import { fridgeListItem } from "../ItemList/ItemList";
 import { dateDifference } from "../../../helpers/dateDifference";
 import InfoDialog from "./InfoDialog";
 import { FridgeContext } from "../../../contexts/FridgeContext.tsx";
@@ -28,7 +28,7 @@ export const defaultInputs: Inputs = {
 };
 
 interface AddItemProps {
-  setList: React.Dispatch<React.SetStateAction<ItemList[] | null>>;
+  setList: React.Dispatch<React.SetStateAction<fridgeListItem[] | null>>;
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   setSelected: React.Dispatch<React.SetStateAction<GridSelectionModel>>;
 }

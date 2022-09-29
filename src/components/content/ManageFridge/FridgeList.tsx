@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Grid, List, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import Fridge from "./Fridge";
 import axios from "axios";
@@ -7,14 +7,13 @@ import Image from "mui-image";
 import AddFridge from "./AddFridge";
 import { FridgeContext } from "../../../contexts/FridgeContext.tsx";
 import { UserContext } from "../../../contexts/UserContext";
-import { flexbox } from "@mui/system";
 import Toast from "../../topNav/Toast";
 
 interface FridgeListProps {
   onClick: () => void;
 }
 
-export type Fridge = {
+export type fridgeInfo = {
   id: number;
   name: string;
   location: null | string;
@@ -25,7 +24,7 @@ export type Fridge = {
 function FridgeList(props: FridgeListProps) {
   const { setFridgeType, setFridgeID } = useContext(FridgeContext);
   const { user } = useContext(UserContext);
-  const [fridgeList, setFridgeList] = useState<[Fridge] | []>([]);
+  const [fridgeList, setFridgeList] = useState<[fridgeInfo] | []>([]);
   const [error, setError] = useState(false);
   const list = fridgeList?.map((fridge) => (
     <Fridge
@@ -37,6 +36,7 @@ function FridgeList(props: FridgeListProps) {
       id={fridge.id}
       name={fridge.name}
       type={fridge.type as "R" | "F"}
+      key={fridge.id}
     />
   ));
 

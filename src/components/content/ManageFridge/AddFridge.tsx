@@ -13,11 +13,11 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { useContext, useState } from "react";
 import axios from "axios";
-import { Fridge } from "./FridgeList";
+import { fridgeInfo } from "./FridgeList";
 import { UserContext } from "../../../contexts/UserContext";
 
 interface AddFridgeProps {
-  setFridgeList: React.Dispatch<React.SetStateAction<[Fridge] | []>>;
+  setFridgeList: React.Dispatch<React.SetStateAction<[fridgeInfo] | []>>;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const AddFridge = (props: AddFridgeProps) => {

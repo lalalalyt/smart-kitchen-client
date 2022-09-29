@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import AddItem from "../AddItem/AddItem";
 import ListTable from "./ListTable";
 import Category, { CategoryType } from "./Category";
-import { Fridge } from "../ManageFridge/FridgeList";
+import { fridgeInfo } from "../ManageFridge/FridgeList";
 import { GridSelectionModel } from "@mui/x-data-grid";
 
 const fridgeType = {
@@ -22,7 +22,7 @@ const fridgeType = {
   Freezer: "Freezer",
 };
 
-export type ItemList = {
+export type fridgeListItem = {
   id: number;
   quantity: number;
   purchasedate: string;
@@ -53,7 +53,7 @@ function ItemList(props: ItemListProps) {
   const [edit, setEdit] = useState<boolean>(false);
   const [selected, setSelected] = useState<GridSelectionModel>([]);
   const [selectedCategory, setSelectedCategory] = useState<null | number>(null);
-  const [list, setList] = useState<null | Array<ItemList>>(null);
+  const [list, setList] = useState<null | Array<fridgeListItem>>(null);
   const [category, setCategory] = useState<null | Array<CategoryType>>(null);
   const [fridgeInfo, setFridgeInfo] = useState<FridgeInfo>({
     fridge_id: 0,
@@ -70,7 +70,7 @@ function ItemList(props: ItemListProps) {
     ]).then((res) => {
       res[0].data.length === 0 ? setList([]) : setList(res[0].data);
       const selectedFridge = res[1].data.filter(
-        (fridge: Fridge) => fridge.id === props.fridgeID
+        (fridge: fridgeInfo) => fridge.id === props.fridgeID
       );
       setFridgeInfo({
         fridge_id: selectedFridge[0].id,
@@ -80,7 +80,7 @@ function ItemList(props: ItemListProps) {
       });
       setCategory(res[2].data);
     });
-  }, []);
+  }, [props.fridgeID]);
   return (
     <>
       {!category && (
@@ -129,7 +129,7 @@ function ItemList(props: ItemListProps) {
                   fontWeight: "bold",
                 }}
               >
-                {fridgeInfo.type == "R"
+                {fridgeInfo.type === "R"
                   ? fridgeType.Refrigerator
                   : fridgeType.Freezer}
               </Typography>

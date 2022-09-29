@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { dateDifference } from "../../../helpers/dateDifference";
 import { showDate } from "../../../helpers/showDate";
 import { showFresh } from "../../../helpers/showFresh";
-import { ItemList } from "./ItemList";
+import { fridgeListItem } from "./ItemList";
 import axios from "axios";
 
 import { defaultInputs, Inputs } from "../AddItem/AddItem";
@@ -15,17 +15,17 @@ import InfoDialog from "../AddItem/InfoDialog";
 import { FridgeContext } from "../../../contexts/FridgeContext.tsx";
 
 interface ListTableProps {
-  list: null | Array<ItemList>;
+  list: null | Array<fridgeListItem>;
   edit: boolean;
   category: null | number;
   selected: GridSelectionModel;
   setSelected: React.Dispatch<React.SetStateAction<GridSelectionModel>>;
-  setList: React.Dispatch<React.SetStateAction<ItemList[] | null>>;
+  setList: React.Dispatch<React.SetStateAction<fridgeListItem[] | null>>;
   setEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ListTable(props: ListTableProps) {
-  const { list, edit, category, selected, setSelected, setList, setEdit } =
+  const { list, edit, category, selected, setSelected, setList } =
     props;
   const { fridgeID } = useContext(FridgeContext);
   const [change, setChange] = useState(false);

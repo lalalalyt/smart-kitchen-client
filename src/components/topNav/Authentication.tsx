@@ -27,7 +27,7 @@ export interface DBUser {
 }
 
 function Authentication() {
-  const [mode, transite] = useContext(ModeContext);
+  const [, transite] = useContext(ModeContext);
   const { user, setUser } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [toastLogin, setToastLogin] = useState(false);
